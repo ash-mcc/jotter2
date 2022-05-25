@@ -9,11 +9,11 @@
   (clerk/serve! {:browse? true})
 
   ;; start with file watcher for these sub-directory paths
-  (clerk/serve! {:watch-paths ["notebooks" "src" "index.md"]})
+  (clerk/serve! {:watch-paths ["notebooks" "index.md"]})
 
   ;; start with file watcher and a `show-filter-fn` function to watch
   ;; a subset of notebooks
-  (clerk/serve! {:watch-paths    ["notebooks" "src"]
+  (clerk/serve! {:watch-paths    ["notebooks"]
                  :show-filter-fn #(clojure.string/starts-with? % "notebooks")})
 
   ;; open clerk
@@ -33,8 +33,10 @@
   
 
   ;; generate a 'static app'
-  (clerk/build-static-app! {:paths   ["index.md"
-                                      "notebooks/tsp_using_smile_and_sko.clj"]
-                            :bundle? false})
+  (clerk/build-static-app! {:bundle?     false
+                            :out-path    "public/jotter2"
+                            :path-prefix "jotter2/"
+                            :paths       ["index.md"
+                                          "notebooks/tsp_using_smile_and_sko.clj"]})
 
   )

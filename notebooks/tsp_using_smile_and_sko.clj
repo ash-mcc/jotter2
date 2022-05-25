@@ -126,7 +126,7 @@
   (read-string (.toString individual)))
 
 ;; Smile's GA operates over abstract Chromosome objects
-;; and this fn defns our implementation for a Chromosome for the TSP  
+;; and this fn defns our implementation for a Chromosome for the TSP 
 (defn individual
   [route]
   (let [state (atom route)]
@@ -172,7 +172,7 @@
 (declare run)
 
 (def sko-solution 
-  (let [ga                              (sko.GA/GA_TSP circuit-distance-using-indexes (count locations) population-size max-generations mutation-rate)
+  (let [ga                              (sk-ga/GA_TSP circuit-distance-using-indexes (count locations) population-size max-generations mutation-rate)
         [route-indexes distance-holder] (py/py.. ga run)                
         route                           (map locations-index route-indexes) 
         distance                        (first distance-holder)]
@@ -261,7 +261,7 @@
     (py/py. agg-canvas "draw") ;; render the figure
     (mpb/mplfig_to_npimage fig))) ;; convert it into the structure that moviepy wants
 
-;; create the animation
+;; create an animated GIF
 (let [solutions            (conj smile-solutions (last smile-solutions)) ;; hack to workaround the last frame being dropped
       fps                  2
       duration             (/ (count solutions) fps) ;; i.e. = the number of routes / the number to be show per second
@@ -274,8 +274,9 @@
       fig                  (plt/figure)
       agg-canvas           (be/FigureCanvasAgg fig)
       make-frame'          (py/->python (partial make-frame get-solution-data-fn fig agg-canvas))
-      animation            (mpe/VideoClip make-frame' :duration duration)
-      filename             "smile-animation.gif"]
-  (py/py. animation write_gif filename :fps fps)
-  (clerk/html [:img {:src filename}]))
+      animation            (mpe/VideoClip make-frame' :duration duration)]
+  (py/py. animation write_gif "smile-animation.gif" :fps fps)
+  (clerk/html [:img {:src "smile-animation.gif"}]))
+
+
 

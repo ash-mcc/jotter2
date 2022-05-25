@@ -10,7 +10,7 @@
             }
  :aliases  {
             ;; run this alias using:  clj -X:jdk-17:web-pages
-            :web-pages {:extra-paths ["src" "datasets"]
+            :web-pages {;:extra-paths ["src" "datasets"]
                         :exec-fn     nextjournal.clerk/build-static-app!
                         :exec-args   {:bundle?     false
                                       :out-path    "public/jotter2"
