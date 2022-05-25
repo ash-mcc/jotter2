@@ -279,7 +279,3 @@
   (py/py. animation write_gif filename :fps fps)
   (clerk/html [:img {:src filename}]))
 
-
-
-(clerk/html [:div [:image {:src "smile.png"}]])
-
