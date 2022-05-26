@@ -14,4 +14,8 @@ to weave narratives with (computer program driven) data, code and graph visualis
 ----
 clj -X:jdk-17:web-pages
 ----
+NOTE: Because of the problem discussed 
+in https://clojurians.slack.com/archives/C035GRLJEP8/p1653495214920129[this Slack thread]
+the command above will error.
+As a workaround, call `build-static-app!` from a REPL (see the form at the end of `user.clj`).
 
