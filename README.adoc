@@ -1,6 +1,4 @@
 = Ash's jotter #&#8203;2 - Applied Machine Learning
-:description: Walk-throughs, notes and other jottings about about Applied Machine Learning.
-:keywords: ML, machine learning, GA, genetic algorithm, travelling salesman, TSP, Clojure
 
 Walk-throughs, notes and other jottings about about Applied Machine Learning.
 
