@@ -276,7 +276,8 @@
       make-frame'          (py/->python (partial make-frame get-solution-data-fn fig agg-canvas))
       animation            (mpe/VideoClip make-frame' :duration duration)]
   (py/py. animation write_gif "smile-animation.gif" :fps fps)
-  (clerk/html [:img {:src "smile-animation.gif"}]))
+  (clerk/html [:img {:src "smile-animation.gif"}]) ;; this isn't a nice since only shows the animated GIF in specific environments
+  )
 
 
 
